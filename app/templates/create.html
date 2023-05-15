@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="create-user">
+    <div class="row vh-100">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="card w-75 p-3">
+                <div class="card-header d-flex justify-content-between">
+                    <h2 class="fw-bold text-secondary">Create User</h2>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('user.create') }}" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama User</label>
+                            <input type="text" class="form-control form-control-lg" id="name" name="name"
+                                placeholder="Masukan Nama User">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email User</label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email"
+                                placeholder="Masukan Email User">
+                        </div>
+                        <button type="submit" class="btn btn-primary d-flex align-items-center">
+                            <i data-feather="save" height="20px" class="me-2"></i>Simpan User
+                        </button>
+                    </form>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="card-footer">
+                    <ul class=flashes>
+                        {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
